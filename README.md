@@ -48,6 +48,11 @@
     ```bash
    docker exec -it project_app php artisan key:generate
    ```
+
+   Далее необходимо дать доступ текущей директории:
+    ```bash
+   sudo chmod 777 -R ./
+   ```
    
 5. **Установка зависимостей**
 
