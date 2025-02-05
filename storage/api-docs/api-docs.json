@@ -1,0 +1,489 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Organization API",
+        "description": "Документация API для получения организаций",
+        "contact": {
+            "email": "shelton.arsen@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/organizations": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Получить все организации",
+                "operationId": "54ffd98fe34a49c738c616139213bf8a",
+                "responses": {
+                    "200": {
+                        "description": "Список организаций",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/building/{building_id}": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Получить организации по зданию",
+                "operationId": "cf2345bffba10de9fe448bcdf38ffc1a",
+                "parameters": [
+                    {
+                        "name": "building_id",
+                        "in": "path",
+                        "description": "ID здания",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список организаций в указанном здании",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Здание не найдено"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/activity/{activity_id}": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Получить организации по виду деятельности",
+                "operationId": "49c36dd6aa088a6971db117d5d7f2e43",
+                "parameters": [
+                    {
+                        "name": "activity_id",
+                        "in": "path",
+                        "description": "ID вида деятельности",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список организаций, относящихся к указанному виду деятельности",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Организации по этому виду деятельности не найдены"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/nearby": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Получить организации в заданном радиусе от точки",
+                "operationId": "aec5d5d19f8674079234c5b9d78fbf1c",
+                "parameters": [
+                    {
+                        "name": "latitude",
+                        "in": "query",
+                        "description": "Широта точки",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "query",
+                        "description": "Долгота точки",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "description": "Радиус в километрах",
+                        "required": true,
+                        "schema": {
+                            "type": "number",
+                            "format": "float"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список организаций в заданном радиусе",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Недостаточно данных для вычислений"
+                    },
+                    "404": {
+                        "description": "Организации не найдены в этом радиусе"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/{id}": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Получить информацию об организации по ID",
+                "operationId": "cf108afa69aa8de272788f058d3a478b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Уникальный идентификатор организации",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Информация об организации",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Organization"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный запрос"
+                    },
+                    "404": {
+                        "description": "Организация не найдена"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/search-by-activity/{activity}": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Поиск организаций по виду деятельности",
+                "operationId": "6c4328f9c62d0ed2fbc78d2b2b383e43",
+                "parameters": [
+                    {
+                        "name": "activity",
+                        "in": "path",
+                        "description": "Название вида деятельности",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список организаций по виду деятельности",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный запрос"
+                    },
+                    "404": {
+                        "description": "Вид деятельности не найден"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/organizations/search-by-name/{name}": {
+            "get": {
+                "tags": [
+                    "Организации"
+                ],
+                "summary": "Поиск организаций по названию",
+                "operationId": "9a59e05b3d8be9756c742fc4b9127097",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Название организации",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Список организаций по названию",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Organization"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Некорректный запрос"
+                    },
+                    "404": {
+                        "description": "Организации не найдены"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Activity": {
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID of the activity",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "description": "Name of the activity",
+                        "type": "string",
+                        "example": "Activity Name"
+                    },
+                    "parent_id": {
+                        "description": "ID of the parent activity",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "parent": {
+                        "$ref": "#/components/schemas/Activity"
+                    },
+                    "children": {
+                        "description": "List of child activities",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Activity"
+                        }
+                    },
+                    "organizations": {
+                        "description": "List of organizations associated with the activity",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Organization"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Building": {
+                "required": [
+                    "address",
+                    "latitude",
+                    "longitude"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID of the building",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "address": {
+                        "description": "Address of the building",
+                        "type": "string",
+                        "example": "123 Main Street"
+                    },
+                    "latitude": {
+                        "description": "Latitude of the building",
+                        "type": "number",
+                        "format": "float",
+                        "example": 40.7128
+                    },
+                    "longitude": {
+                        "description": "Longitude of the building",
+                        "type": "number",
+                        "format": "float",
+                        "example": -74.006
+                    },
+                    "organizations": {
+                        "description": "List of organizations located in the building",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Organization"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "Organization": {
+                "title": "Organization",
+                "description": "Модель организации",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "ООО Рога и Копыта"
+                    },
+                    "building": {
+                        "$ref": "#/components/schemas/Building"
+                    },
+                    "phones": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/OrganizationPhone"
+                        }
+                    },
+                    "activities": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Activity"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "OrganizationPhone": {
+                "required": [
+                    "organization_id",
+                    "phone_number"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "ID of the phone record",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "organization_id": {
+                        "description": "ID of the organization",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "phone_number": {
+                        "description": "Phone number of the organization",
+                        "type": "string",
+                        "example": "+1234567890"
+                    },
+                    "organization": {
+                        "$ref": "#/components/schemas/Organization"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "description": "API ключ для доступа к API",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Организации",
+            "description": "Организации"
+        }
+    ],
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ]
+}
