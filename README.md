@@ -99,6 +99,14 @@
 
 ## Команды для разработки
 
+- **Просмотр Swagger UI:**
+
+  ```
+  http://localhost:8876/api/documentation
+  ```
+
+  API ключ по умолчанию: 'default-api-key'
+
 - **Запуск контейнеров:**
 
   ```bash
@@ -123,12 +131,6 @@
 
   ```bash
   docker compose exec project_app <команда>
-  ```
-
-- **Просмотр Swagger UI:**
-
-  ```
-  http://localhost:8876/api/documentation
   ```
 
 ## Примечания
