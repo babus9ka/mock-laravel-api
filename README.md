@@ -20,12 +20,12 @@
 
 2. **Запуск Docker контейнеров**
 
-   В корне проекта уже есть все необходимые файлы для Docker (например, `Dockerfile` и `docker-compose.yml`).
+   В корне проекта уже есть все необходимые файлы для Docker (например, `Dockerfile` и `docker compose.yml`).
 
    Запустите контейнеры с помощью Docker Compose:
 
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
    Это создаст и запустит контейнеры для вашего проекта. После этого ваше приложение будет доступно по адресу `http://localhost:8876` (или по порту, указанному в конфигурации Docker).
@@ -97,19 +97,19 @@
 - **Запуск контейнеров:**
 
   ```bash
-  docker-compose up -d
+  docker compose up -d
   ```
 
 - **Остановка контейнеров:**
 
   ```bash
-  docker-compose down
+  docker compose down
   ```
 
 - **Просмотр логов контейнера:**
 
   ```bash
-  docker-compose logs -f
+  docker compose logs -f
   ```
 
 - **Выполнение команд внутри контейнера:**
@@ -117,7 +117,7 @@
   Чтобы выполнить команду внутри контейнера, например, для выполнения команд Laravel, используйте:
 
   ```bash
-  docker-compose exec project_app <команда>
+  docker compose exec project_app <команда>
   ```
 
 - **Просмотр Swagger UI:**
