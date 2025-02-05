@@ -37,7 +37,7 @@
    Для этого выполните следующую команду:
 
    ```bash
-   composer install
+   docker exec -it project_app composer install
    ```
 
    Это выполнит все миграции для вашего проекта.
