@@ -14,7 +14,7 @@
    Если у вас еще нет репозитория проекта, клонируйте его:
 
    ```bash
-   git clone https://github.com/mock-laravel-api.git
+   git clone git@github.com:babus9ka/mock-laravel-api.git
    cd mock-laravel-api
    ```
 
@@ -88,6 +88,12 @@
 
   ```bash
   docker-compose exec project_app <команда>
+  ```
+
+- **Просмотр Swagger UI:**
+
+  ```
+  http://localhost:8876/api/documentation
   ```
 
 ## Примечания
