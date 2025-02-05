@@ -14,8 +14,8 @@
    Если у вас еще нет репозитория проекта, клонируйте его:
 
    ```bash
-   git clone https://github.com/ваш-репозиторий.git
-   cd ваш-репозиторий
+   git clone https://github.com/mock-laravel-api.git
+   cd mock-laravel-api
    ```
 
 2. **Запуск Docker контейнеров**
